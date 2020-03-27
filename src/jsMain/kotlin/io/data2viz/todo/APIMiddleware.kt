@@ -9,13 +9,11 @@ import io.ktor.client.call.receive
 import io.ktor.client.features.cookies.HttpCookies
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.request.*
-import io.ktor.client.response.HttpResponse
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.URLProtocol
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import kotlin.browser.document
 import kotlin.browser.window
 
 class APIMiddleware : Middleware<TodoAppState, Action> {

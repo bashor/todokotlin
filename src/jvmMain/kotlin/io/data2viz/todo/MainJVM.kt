@@ -189,10 +189,10 @@ private fun HTML.pageHead() {
 fun FlowContent.includeJs() {
 //    script(src = "/main.bundle.js") {}
 
-    val parentPackage = "js.io.data2viz.todo"
+//    val parentPackage = "js.io.data2viz.todo"
     script {
         unsafe {
-            +"require(['/todokotlin.js'], function(js) { console.log($parentPackage); });\n"
+            +"require(['/todokotlin.js'], function(js) { console.log(js); });\n"
         }
     }
 }
