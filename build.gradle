@@ -1,6 +1,7 @@
 plugins {
 	id 'org.jetbrains.kotlin.multiplatform' version '1.4-M1'/* apply false*/
 	id 'kotlinx-serialization' version '1.4-M1'/* apply false*/
+	id 'application'
 }
 
 group 'io.data2viz'
@@ -17,13 +18,6 @@ allprojects {
 
 // Report Kotlin compiler version when building project
 println("Using Kotlin compiler version: $org.jetbrains.kotlin.config.KotlinCompilerVersion.VERSION")
-
-
-//apply plugin: 'kotlinx-serialization'
-//apply plugin: 'kotlin-dce-js'
-//apply plugin: 'com.moowork.node'
-apply plugin: 'application'
-
 
 kotlin {
 
@@ -85,17 +79,6 @@ kotlin {
 				implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlin_serializable_version"
 				implementation "io.ktor:ktor-client-js:$ktor_version"
 
-//				implementation "org.jetbrains.kotlinx:kotlinx-html-js:$kotlinx_html_version@klib"
-//				implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlin_serializable_version@klib"
-//				implementation "io.ktor:ktor-client-js:$ktor_version@klib"
-//				implementation "io.ktor:ktor-io-js:$ktor_version@klib"
-//				implementation "io.ktor:ktor-utils-js:$ktor_version@klib"
-//				implementation "io.ktor:ktor-http-js:$ktor_version@klib"
-//				implementation "io.ktor:ktor-http-cio-js:$ktor_version@klib"
-//				implementation "io.ktor:ktor-client-core-js:$ktor_version@klib"
-//				implementation "org.jetbrains.kotlinx:atomicfu-js:$kotlinx_atomicfu@klib"
-//				implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinx_coroutines_version@klib"
-
 				implementation npm("abort-controller", "3.0.0")
 				implementation npm("text-encoding", "0.7.0")
 			}
@@ -127,36 +110,6 @@ kotlin {
 
 }
 
-//runDceJsKotlin {
-//	dceOptions{
-//		devMode = false
-//		outputDirectory = "data/public"
-//	}
-//}
-//runDceJsTestKotlin {
-//	dceOptions{
-//		devMode = true
-//		outputDirectory = "node_modules"
-//	}
-//}
-
-//node {
-//	version = "$node_version"
-//	npmVersion = "$npm_version"
-//	download = true
-//}
-
-//task installDependencies(type: YarnTask) {
-//	args = ['install']
-//}
-
-//task prepareMocha(dependsOn: [jsTestClasses, runDceJsTestKotlin, installDependencies])
-
-//task runJsTests(type: YarnTask, dependsOn: prepareMocha) {
-//	args = ['test']
-//}
-
-
 mainClassName="io.ktor.server.netty.EngineMain"
 
 if (distJar.toBoolean()) {
@@ -168,27 +121,6 @@ if (distJar.toBoolean()) {
 		classifier = null
 		version = null
 	}
-}
-
-//build.dependsOn(runDceJsKotlin)
-//run.dependsOn(build)
-
-
-if (false) {
-
-	apply plugin: 'com.moowork.node'
-
-	task yarnInstall(type: YarnTask) {
-		args = ['install']
-	}
-
-	task bundle(type: YarnTask, dependsOn: [runDceKotlinJs, yarnInstall]) {
-		args = ["run", "bundle"]
-	}
-
-	runDceKotlinJs.keep "js.io.data2viz.todo.main"
-//} else {
-//	runDceKotlinJs.dceOptions.devMode = true
 }
 
 ////// Dev server

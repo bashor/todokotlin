@@ -35,7 +35,7 @@ The implementation simulates server error during removing of todo
 From the root directory, just launch:
 
 ```bash
- ./gradlew run
+ ./gradlew jsBrowserRun
 ```
 
 ## Using Axios instead of Ktor client
